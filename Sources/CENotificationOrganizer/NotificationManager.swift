@@ -54,7 +54,7 @@ public class NotificationManager {
         }
         
         for (index, content) in notificationModel.notificationContent.enumerated() {
-            let thisTime:TimeInterval = Double((index + 1)) * notificationModel.minutes // 1 minute = 60 seconds
+            let thisTime:TimeInterval = Double((index + 1)) * notificationModel.minutes * 60
             let trigger = UNTimeIntervalNotificationTrigger(
                 timeInterval: thisTime,
                 repeats: (notificationModel.type == .periodically))
