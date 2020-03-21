@@ -6,7 +6,7 @@ final class CENotificationOrganizerTests: XCTestCase {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
         // results.
-        XCTAssertEqual(CENotificationOrganizer().text, "Hello, World!")
+        //XCTAssertEqual(CENotificationOrganizer().text, "Hello, World!")
     }
 
     static var allTests = [

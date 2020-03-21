@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+struct NotificationModel {
+    let notificationContent: [NotificationContent]
+    let category: NotificationCategory?
+    let type: NotificationType
+    let minutes: Double
+}

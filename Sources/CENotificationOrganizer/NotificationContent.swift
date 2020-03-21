@@ -6,8 +6,9 @@
 //
 
 import Foundation
-
-struct NotificationModel {
+import UserNotifications
+struct NotificationContent {
+    let id: String
     let title:String
     let body: String
     let sound: UNNotificationSound

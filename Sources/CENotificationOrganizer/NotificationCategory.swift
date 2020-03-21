@@ -6,3 +6,8 @@
 //
 
 import Foundation
+import UserNotifications
+struct NotificationCategory {
+    let id: String
+    let actions: [UNNotificationAction]
+}
