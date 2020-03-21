@@ -15,4 +15,13 @@ public struct NotificationContent {
     let badge: Int?
     let categoryIdentifier: String?
     let userInfo: [AnyHashable : Any]?
+    public init(id: String, title:String, body: String, sound: UNNotificationSound, badge: Int?, categoryIdentifier: String?, userInfo: [AnyHashable : Any]?) {
+        self.id = id
+        self.title = title
+        self.body = body
+        self.sound = sound
+        self.badge = badge
+        self.categoryIdentifier = categoryIdentifier
+        self.userInfo = userInfo
+    }
 }

@@ -10,4 +10,8 @@ import UserNotifications
 public struct NotificationCategory {
     let id: String
     let actions: [UNNotificationAction]
+    public init(id: String, actions: [UNNotificationAction]) {
+        self.id = id
+        self.actions = actions
+    }
 }
