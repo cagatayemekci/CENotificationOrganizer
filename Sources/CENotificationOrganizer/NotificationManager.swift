@@ -15,12 +15,14 @@ public enum NotificationType {
 public class NotificationManager {
     private let notificationCenter = UNUserNotificationCenter.current()
     
+    public init() {}
+    
     private func addActionsToNotificationWith(category: NotificationCategory) {
         let nCategory = UNNotificationCategory(identifier: category.id, actions: category.actions, intentIdentifiers: [], options: [])
         notificationCenter.setNotificationCategories([nCategory])
     }
     
-    func getUserPermission() {
+    public func getUserPermission() {
         let options: UNAuthorizationOptions = [.alert, .sound, .badge]
         notificationCenter.requestAuthorization(options: options) { (didAllow, error) in
             if !didAllow {
@@ -46,7 +48,7 @@ public class NotificationManager {
         return nContent
     }
     
-    func sendNotification(notificationModel:NotificationModel) {
+    public func sendNotification(notificationModel:NotificationModel) {
         if let category = notificationModel.category {
             addActionsToNotificationWith(category: category)
         }
