@@ -7,7 +7,7 @@
 
 import Foundation
 import UserNotifications
-struct NotificationCategory {
+public struct NotificationCategory {
     let id: String
     let actions: [UNNotificationAction]
 }

@@ -8,11 +8,11 @@
 import Foundation
 import UserNotifications
 
-enum NotificationType {
+public enum NotificationType {
     case periodically
     case oneTime
 }
-class NotificationManager {
+public class NotificationManager {
     private let notificationCenter = UNUserNotificationCenter.current()
     
     private func addActionsToNotificationWith(category: NotificationCategory) {

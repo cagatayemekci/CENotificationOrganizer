@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NotificationModel {
+public struct NotificationModel {
     let notificationContent: [NotificationContent]
     let category: NotificationCategory?
     let type: NotificationType

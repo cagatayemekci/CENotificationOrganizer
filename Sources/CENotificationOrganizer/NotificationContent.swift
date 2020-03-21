@@ -7,7 +7,7 @@
 
 import Foundation
 import UserNotifications
-struct NotificationContent {
+public struct NotificationContent {
     let id: String
     let title:String
     let body: String
