@@ -12,25 +12,38 @@ public enum NotificationType {
     case periodically
     case oneTime
 }
-public class NotificationManager {
-    private let notificationCenter = UNUserNotificationCenter.current()
+
+public protocol NotificationManagerProtocol {
+    func getUserPermission()
+    func sendNotification(notificationModel:NotificationModel)
+}
+
+public class NotificationManager: NotificationManagerProtocol {
+    private let notificationCenter: NotificationCenterProtocol?
     
-    public init() {}
+    public init(notificationCenter: NotificationCenterProtocol = UNUserNotificationCenter.current()) {
+        self.notificationCenter = notificationCenter
+    }
     
     private func addActionsToNotificationWith(category: NotificationCategory) {
         let nCategory = UNNotificationCategory(identifier: category.id, actions: category.actions, intentIdentifiers: [], options: [])
-        notificationCenter.setNotificationCategories([nCategory])
+        notificationCenter?.setNotificationCategories([nCategory])
     }
     
     public func getUserPermission() {
         let options: UNAuthorizationOptions = [.alert, .sound, .badge]
-        notificationCenter.requestAuthorization(options: options) { (didAllow, error) in
+        notificationCenter?.requestAuthorization(options: options) { (didAllow, error) in
             if !didAllow {
                 print("User has declined notificaiton")
             }
         }
     }
     
+    func checkUserPermission(completion: @escaping (UNAuthorizationStatus) -> Void){
+        notificationCenter?.getNotificationSettings(completionHandler: { (settings) in
+            completion(settings.authorizationStatus)
+        })
+    }
     private func createNotificationContent(content: NotificationContent) -> UNMutableNotificationContent{
         let nContent = UNMutableNotificationContent()
         nContent.title = content.title
@@ -60,7 +73,7 @@ public class NotificationManager {
                 repeats: (notificationModel.type == .periodically))
             
             let request = UNNotificationRequest(identifier: content.id, content: createNotificationContent(content: content), trigger: trigger)
-            self.notificationCenter.add(request) { error in
+            self.notificationCenter?.add(request) { error in
                 if let error = error {
                     print("Error \(error.localizedDescription)")
                 }

@@ -3,5 +3,5 @@ import XCTest
 import CENotificationOrganizerTests
 
 var tests = [XCTestCaseEntry]()
-tests += CENotificationOrganizerTests.allTests()
+tests += NotificationManagerTests.allTests()
 XCTMain(tests)

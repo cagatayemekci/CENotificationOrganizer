@@ -9,14 +9,19 @@ import XCTest
 @testable import CENotificationOrganizer
 
 final class NotificationManagerTests: XCTestCase {
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        //XCTAssertEqual(CENotificationOrganizer().text, "Hello, World!")
-    }
-
+    
+    var manager: NotificationManagerProtocol?
+    
     static var allTests = [
-        ("testExample", testExample),
+        (testGetUserPermission),
     ]
+    
+    func testGetUserPermission() {
+        let mock = MockNotificationCenter(requestAuthorization: { (state) in
+            state(true, nil)
+        })
+        manager = NotificationManager(notificationCenter: mock)
+        manager?.getUserPermission()
+        XCTAssertTrue(mock.requestAuthorizationIsCalled)
+    }
 }
